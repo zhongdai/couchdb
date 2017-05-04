@@ -258,9 +258,10 @@ add_default_text_field([_ | Rest], Acc) ->
 
 %% index of all field names
 get_field_names(Fields) ->
-    GBFieldSet = gb_sets:from_list(Fields),
-    UFields = gb_sets:to_list(GBFieldSet),
-    [[<<"$fieldnames">>, Name, []] || {Name, _Type, _Value} <- UFields].
+    FieldNameSet = lists:foldl(fun({Name, _, _}, Set) ->
+        gb_sets:add([<<"$fieldnames">>, Name, []], Set)
+    end, gb_sets:new(), Fields),
+    gb_sets:to_list(FieldNameSet).
 
 
 convert_text_fields([]) ->
