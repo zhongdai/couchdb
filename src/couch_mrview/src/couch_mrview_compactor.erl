@@ -292,9 +292,8 @@ swap_compacted(OldState, NewState) ->
 
     {ok, Pre} = couch_file:bytes(Fd),
     {ok, Post} = couch_file:bytes(NewFd),
-    couch_log:info("CouchDB swapping view files pre-compact:~s(disk_size:"
-            " ~p) and post-compact:~s(disk_size: ~p).", [IndexFName, Pre,
-            CompactFName, Post]),
+    couch_log:notice("Compaction swap for view ~s ~p ~p", [IndexFName,
+        Pre, Post]),
     ok = couch_file:delete(RootDir, IndexFName),
     ok = file:rename(CompactFName, IndexFName),
 

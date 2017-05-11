@@ -245,9 +245,8 @@ handle_cast({compact_done, CompactFilepath}, #db{filepath=Filepath,fd=Fd}=Db) ->
         {ok, Pre} = couch_file:bytes(Fd),
         {ok, Post} = couch_file:bytes(NewFd),
 
-        couch_log:info("CouchDB swapping files pre-compact:~s(disk_size:"
-                "~p) and post-compact:~s(disk_size: ~p).", [Filepath,
-                Pre, CompactFilepath, Post]),
+        couch_log:notice("Compaction swap for db: ~s ~p ~p", [Filepath,
+                Pre, Post]),
         ok = file:rename(CompactFilepath, Filepath ++ ".compact"),
         RootDir = config:get("couchdb", "database_dir", "."),
         couch_file:delete(RootDir, Filepath),
