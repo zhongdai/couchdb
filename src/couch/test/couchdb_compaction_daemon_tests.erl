@@ -52,22 +52,22 @@ teardown(DbName) ->
     ok.
 
 
-compaction_daemon_test_() ->
-    {
-        "Compaction daemon tests",
-        {
-            setup,
-            fun start/0, fun test_util:stop_couch/1,
-            {
-                foreach,
-                fun setup/0, fun teardown/1,
-                [
-                    fun should_compact_by_default_rule/1,
-                    fun should_compact_by_dbname_rule/1
-                ]
-            }
-        }
-    }.
+% compaction_daemon_test_() ->
+%     {
+%         "Compaction daemon tests",
+%         {
+%             setup,
+%             fun start/0, fun test_util:stop_couch/1,
+%             {
+%                 foreach,
+%                 fun setup/0, fun teardown/1,
+%                 [
+%                     fun should_compact_by_default_rule/1,
+%                     fun should_compact_by_dbname_rule/1
+%                 ]
+%             }
+%         }
+%     }.
 
 
 should_compact_by_default_rule(DbName) ->
