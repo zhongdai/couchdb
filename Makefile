@@ -100,7 +100,16 @@ eunit: export BUILDDIR = $(shell pwd)
 eunit: export ERL_AFLAGS = -config $(shell pwd)/rel/files/eunit.config
 eunit: couch
 	@$(REBAR) setup_eunit 2> /dev/null
-	@$(REBAR) -r eunit $(EUNIT_OPTS)
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
+	@$(REBAR) -r eunit apps=chttpd
 
 
 .PHONY: javascript
